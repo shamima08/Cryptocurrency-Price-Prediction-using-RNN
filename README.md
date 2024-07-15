@@ -214,13 +214,16 @@ bilstm_mae = mean_absolute_error(Y_test_btc, bilstm_predictions)
 ```
 
 # Print the scores
+```
 print(f'LSTM MSE: {lstm_mse}, MAE: {lstm_mae}')
 print(f'GRU MSE: {gru_mse}, MAE: {gru_mae}')
 print(f'BiLSTM MSE: {bilstm_mse}, MAE: {bilstm_mae}')
 
 from tensorflow.keras.optimizers import Adam
+```
 
 # Tune LSTM hyperparameters
+```
 tuned_lstm_model = Sequential()
 tuned_lstm_model.add(LSTM(units=100, return_sequences=True, input_shape=(X_train_btc.shape[1], X_train_btc.shape[2])))
 
@@ -233,8 +236,9 @@ tuned_lstm_model.compile(optimizer=optimizer, loss='mean_squared_error')
 
 # Retrain with new hyperparameters
 tuned_lstm_history = tuned_lstm_model.fit(X_train_btc, Y_train_btc, epochs=100, batch_size=16, validation_data=(X_test_btc, Y_test_btc), verbose=1)
-
+```
 # Plot actual vs. predicted prices for the best-performing model (example with LSTM)
+```
 plt.figure(figsize=(10,6))
 plt.plot(Y_test_btc, label='Actual Prices')
 plt.plot(lstm_predictions, label='Predicted Prices')
@@ -243,25 +247,57 @@ plt.xlabel('Time')
 plt.ylabel('Normalized Price')
 plt.legend()
 plt.show()
+```
+# Plot actual vs. predicted prices for the best-performing model (example with GRU)
+```
+plt.figure(figsize=(10,6))
+plt.plot(Y_test_btc, label='Actual Prices')
+plt.plot(gru_predictions, label='Predicted Prices')
+plt.title('For BTC Comparison of Actual and GRU-Predicted Prices')
+plt.xlabel('Time')
+plt.ylabel('Normalized Price')
+plt.legend()
+plt.show()
+```
 
+# Plot actual vs. predicted prices for the best-performing model (example with Bi-LSTM)
+```
+plt.figure(figsize=(10,6))
+plt.plot(Y_test_btc, label='Actual Prices')
+plt.plot(bilstm_predictions, label='Predicted Prices')
+plt.title('For BTC Comparison of Actual and Bi-LSTM Predicted Prices')
+plt.xlabel('Time')
+plt.ylabel('Normalized Price')
+plt.legend()
+plt.show()
+```
+
+#def calculate_rmse(actuals, predictions)
+```
 def calculate_rmse(actuals, predictions):
+
     """
     Calculate Root Mean Squared Error
     """
     mse = np.mean((actuals - predictions) ** 2)
     rmse = np.sqrt(mse)
     return rmse
-
+```
+    
+#def calculate_rmse(actuals, predictions)
+```
 def calculate_mape(actuals, predictions):
     """
     Calculate Mean Absolute Percentage Error
     """
     mape = np.mean(np.abs((actuals - predictions) / actuals)) * 100
     return mape
+```
 
 # Assuming Y_test, lstm_predictions, gru_predictions, and bilstm_predictions are already defined
 
 # Calculate RMSE for each model
+```
 lstm_rmse = calculate_rmse(Y_test_btc, lstm_predictions.flatten())
 gru_rmse = calculate_rmse(Y_test_btc, gru_predictions.flatten())
 bilstm_rmse = calculate_rmse(Y_test_btc, bilstm_predictions.flatten())
@@ -275,25 +311,7 @@ bilstm_mape = calculate_mape(Y_test_btc, bilstm_predictions.flatten())
 print(f'LSTM RMSE: {lstm_rmse:.3f}, MAPE: {lstm_mape:.2f}%')
 print(f'GRU RMSE: {gru_rmse:.3f}, MAPE: {gru_mape:.2f}%')
 print(f'BiLSTM RMSE: {bilstm_rmse:.3f}, MAPE: {bilstm_mape:.2f}%')
+```
 
-# Plot actual vs. predicted prices for the best-performing model (example with GRU)
-plt.figure(figsize=(10,6))
-plt.plot(Y_test_btc, label='Actual Prices')
-plt.plot(gru_predictions, label='Predicted Prices')
-plt.title('For BTC Comparison of Actual and GRU-Predicted Prices')
-plt.xlabel('Time')
-plt.ylabel('Normalized Price')
-plt.legend()
-plt.show()
-
-# Plot actual vs. predicted prices for the best-performing model (example with Bi-LSTM)
-plt.figure(figsize=(10,6))
-plt.plot(Y_test_btc, label='Actual Prices')
-plt.plot(bilstm_predictions, label='Predicted Prices')
-plt.title('For BTC Comparison of Actual and Bi-LSTM Predicted Prices')
-plt.xlabel('Time')
-plt.ylabel('Normalized Price')
-plt.legend()
-plt.show()
 
 #now do the same for Ethereum and Litecoins also.
