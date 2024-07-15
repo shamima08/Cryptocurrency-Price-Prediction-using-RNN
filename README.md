@@ -17,14 +17,20 @@ import matplotlib.pyplot as plt
 ```
 
 # Define the tickers for Bitcoin, Ethereum, and Litecoin
+```
 cryptos = ['BTC-USD', 'ETH-USD', 'LTC-USD']
+```
 
 # Define the start and end date for the data
+```
 start_date = '2019-01-01'
 end_date = '2024-01-01'
+```
 
 # Create an empty dictionary to store the data
+```
 crypto_data = {}
+```
 
 # Download and store data in the dictionary
 ```
@@ -160,7 +166,9 @@ print('GRU Test loss:', gru_scores)
 ```
 bilstm_scores = bilstm_model.evaluate(X_test_btc, Y_test_btc, verbose=0)
 print('BiLSTM Test loss:', bilstm_scores)
-
+```
+# plots
+```
 plt.figure(figsize=(18,5))
 plt.subplot(1,3,1)
 plt.plot(lstm_history.history['loss'], label='LSTM training Loss')
@@ -185,9 +193,7 @@ plt.ylabel('Loss')
 plt.legend()
 plt.show()
 ```
-```
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-```
+
 # Make predictions
 ```
 lstm_predictions = lstm_model.predict(X_test_btc)
@@ -229,12 +235,15 @@ tuned_lstm_model.add(LSTM(units=100, return_sequences=True, input_shape=(X_train
 
 tuned_lstm_model.add(LSTM(units=100))
 tuned_lstm_model.add(Dense(1))
+```
 
 # Adjust learning rate
+```
 optimizer = Adam(learning_rate=0.001)
 tuned_lstm_model.compile(optimizer=optimizer, loss='mean_squared_error')
-
+```
 # Retrain with new hyperparameters
+```
 tuned_lstm_history = tuned_lstm_model.fit(X_train_btc, Y_train_btc, epochs=100, batch_size=16, validation_data=(X_test_btc, Y_test_btc), verbose=1)
 ```
 # Plot actual vs. predicted prices for the best-performing model (example with LSTM)
@@ -272,7 +281,7 @@ plt.legend()
 plt.show()
 ```
 
-#def calculate_rmse(actuals, predictions)
+# def calculate_rmse(actuals, predictions)
 ```
 def calculate_rmse(actuals, predictions):
 
@@ -284,7 +293,7 @@ def calculate_rmse(actuals, predictions):
     return rmse
 ```
     
-#def calculate_rmse(actuals, predictions)
+# def calculate_rmse(actuals, predictions)
 ```
 def calculate_mape(actuals, predictions):
     """
