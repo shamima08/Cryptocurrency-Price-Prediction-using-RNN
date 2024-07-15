@@ -35,8 +35,6 @@ for ticker in cryptos:
 
 from sklearn.preprocessing import MinMaxScaler
 
-# Define the tickers for Bitcoin, Ethereum, and Litecoin
-cryptos = ['BTC-USD', 'ETH-USD', 'LTC-USD']
 
 # Assuming we're working with Bitcoin data for this example
 btc_data = crypto_data['BTC-USD']
