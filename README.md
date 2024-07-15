@@ -303,7 +303,6 @@ def calculate_mape(actuals, predictions):
     return mape
 ```
 
-# Assuming Y_test, lstm_predictions, gru_predictions, and bilstm_predictions are already defined
 
 # Calculate RMSE for each model
 ```
