@@ -341,7 +341,10 @@ print(f'BiLSTM RMSE: {bilstm_rmse:.3f}, MAPE: {bilstm_mape:.2f}%')
 ```
 
 
-# do the same for Ethereum and Litecoin.
+# for Ethereum and Litecoin
+```
+do the same code for Ethereum and Litecoin.
+```
 
 
 
