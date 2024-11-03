@@ -172,7 +172,6 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
 
-
 plt.subplot(1, 3, 2)
 plt.plot(gru_history.history['loss'], label='GRU training Loss')
 plt.plot(gru_history.history['val_loss'], label='GRU Validation Loss')
@@ -180,8 +179,6 @@ plt.title('GRU Training and Validation Loss')
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
-
-
 
 plt.subplot(1, 3, 3)
 plt.plot(bilstm_history.history['loss'], label='Bi-LSTM training Loss')
@@ -297,6 +294,9 @@ plt.grid(True)
 ```
 plt.savefig('btc-bilstm.png')
 plt.show()
+```
+# define RMSE and MAPE
+```
 
 def calculate_rmse(actuals, predictions):
     """
@@ -312,6 +312,7 @@ def calculate_mape(actuals, predictions):
     """
     mape = np.mean(np.abs((actuals - predictions) / actuals)) * 100
     return mape
+```
 
 
 
